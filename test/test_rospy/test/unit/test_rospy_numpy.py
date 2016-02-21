@@ -78,3 +78,11 @@ class TestRospyNumpy(unittest.TestCase):
         self.assert_(isinstance(f3.data, numpy.ndarray), type(f3.data))
         v = numpy.equal(f3.data, numpy.array([1.0, 2.1, 3.2, 4.3, 5.4, 6.5], dtype=numpy.float32))
         self.assert_(v.all())
+        
+    def test_class_identity(self):
+        self.assert_(isinstance(numpy_msg(Floats)(), numpy_msg(Floats)))
+        
+        FloatsNP = numpy_msg(Floats)
+        FloatsNP2 = numpy_msg(Floats)
+        
+        self.assert_(FloatsNP is FloatsNP2)
